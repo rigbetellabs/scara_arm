@@ -1,0 +1,23 @@
+scara_arm_controller:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  # Position Controllers --------------------------------------
+  link_01_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: link_01_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  link_02_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: link_02_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  link_03_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: link_03_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  link_04_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: link_04_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}

@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<robot name="scara_arm" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<transmission name="link_01_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="link_01_joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="link_01_joint_actr">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="link_02_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="link_02_joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="link_02_joint_actr">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="link_03_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="link_03_joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="link_03_joint_actr">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="link_04_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="link_04_joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="link_04_joint_actr">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+</robot>

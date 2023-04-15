@@ -1,0 +1,9 @@
+<launch>
+
+<rosparam file="$(find scara_arm_description)/launch/controller.yaml" command="load"/>
+<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="scara_arm" args="link_01_joint_position_controller link_02_joint_position_controller link_03_joint_position_controller link_04_joint_position_controller joint_state_controller "/>
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+  <remap from="/joint_states" to="/scara_arm/joint_states"/>
+</node>
+
+</launch>
