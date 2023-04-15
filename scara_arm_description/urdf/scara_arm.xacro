@@ -4,6 +4,13 @@
 <xacro:include filename="$(find scara_arm_description)/urdf/materials.xacro" />
 <xacro:include filename="$(find scara_arm_description)/urdf/scara_arm.trans" />
 <xacro:include filename="$(find scara_arm_description)/urdf/scara_arm.gazebo" />
+<link name="world" />
+    <joint name="world_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0.25" />
+        <parent link="world" />
+        <child link="base_link" />
+    </joint>
+
 <link name="base_link">
   <inertial>
     <origin xyz="-0.11835854812758473 -0.000276888564792295 0.07546314461319549" rpy="0 0 0"/>
