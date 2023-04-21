@@ -121,7 +121,7 @@
   <parent link="base_link"/>
   <child link="link_01_1"/>
   <axis xyz="0.0 -0.0 1.0"/>
-  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+  <limit upper="1.71042" lower="-1.43117" effort="100" velocity="100"/>
 </joint>
 
 <joint name="link_02_joint" type="revolute">
@@ -129,7 +129,7 @@
   <parent link="link_01_1"/>
   <child link="link_02_1"/>
   <axis xyz="0.0 0.0 1.0"/>
-  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+  <limit upper="1.43117" lower="-1.71042" effort="100" velocity="100"/>
 </joint>
 
 <joint name="link_03_joint" type="prismatic">
