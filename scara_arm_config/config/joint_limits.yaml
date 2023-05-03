@@ -19,10 +19,13 @@ joint_limits:
     has_acceleration_limits: false
     max_acceleration: 0
   link_03_joint:
-    has_velocity_limits: true
-    max_velocity: 100
+    has_velocity_limits: false
+    max_velocity: 0
     has_acceleration_limits: false
     max_acceleration: 0
+    has_effort_limits: true
+    max_effort: 180
+    min_effort: 0
   link_04_joint:
     has_velocity_limits: true
     max_velocity: 100

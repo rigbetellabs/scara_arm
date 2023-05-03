@@ -2,6 +2,7 @@
 #define scara_arm_HW_INTERFACE_H
 
 #include <ros_control_boilerplate/generic_hw_interface.h>
+#include <std_msgs/Float32.h>
 
 namespace scara_arm_ns
 {
@@ -28,6 +29,8 @@ public:
   virtual void enforceLimits(ros::Duration& period);
 
 protected:
+
+ros::Publisher effort_pub;
 
 };  // class
 
