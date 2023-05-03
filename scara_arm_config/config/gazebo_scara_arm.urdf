@@ -84,6 +84,12 @@
         <mu2>0.2</mu2>
         <selfCollide>true</selfCollide>
     </gazebo>
+    <link name="world" />
+    <joint name="world_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0.25" />
+        <parent link="world" />
+        <child link="base_link" />
+    </joint>
     <link name="base_link">
         <inertial>
             <origin rpy="0 0 0" xyz="-0.11835854812758473 -0.000276888564792295 0.07546314461319549" />
@@ -189,14 +195,14 @@
         <parent link="base_link" />
         <child link="link_01_1" />
         <axis xyz="0.0 -0.0 1.0" />
-        <limit effort="100" lower="-1.570796" upper="1.570796" velocity="100" />
+        <limit effort="100" lower="-1.43117" upper="1.71042" velocity="100" />
     </joint>
     <joint name="link_02_joint" type="revolute">
         <origin rpy="0 0 0" xyz="0.198 0.0 0.016161" />
         <parent link="link_01_1" />
         <child link="link_02_1" />
         <axis xyz="0.0 0.0 1.0" />
-        <limit effort="100" lower="-1.570796" upper="1.570796" velocity="100" />
+        <limit effort="100" lower="-1.71042" upper="1.43117" velocity="100" />
     </joint>
     <joint name="link_03_joint" type="prismatic">
         <origin rpy="0 0 0" xyz="0.212 -0.014923 0.040683" />
