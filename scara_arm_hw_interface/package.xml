@@ -30,8 +30,12 @@
   <build_depend>roscpp</build_depend>
   <build_export_depend>roscpp</build_export_depend>
   <exec_depend>roscpp</exec_depend>
+  <build_depend>message_generation</build_depend>
+  <build_export_depend>message_generation</build_export_depend>
+  <exec_depend>message_runtime</exec_depend>
   <build_depend>ros_control_boilerplate</build_depend>  
   <build_export_depend>ros_control_boilerplate</build_export_depend>
 
+  <exec_depend>message_generation</exec_depend>
   <exec_depend>ros_control_boilerplate</exec_depend>
 </package>

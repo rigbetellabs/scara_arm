@@ -2,7 +2,10 @@
 #define scara_arm_HW_INTERFACE_H
 
 #include <ros_control_boilerplate/generic_hw_interface.h>
-#include <std_msgs/Float32.h>
+#include <scara_arm_hw_interface/joint_arm.h>
+
+#define DEG_TO_RAD 0.01745329251
+#define RAD_TO_DEG 57.2957795131
 
 namespace scara_arm_ns
 {
@@ -30,7 +33,11 @@ public:
 
 protected:
 
-ros::Publisher effort_pub;
+ros::Publisher command_pub;
+
+ros::Subscriber telemetry_sub;
+void armTelemetryCallback(const scara_arm_hw_interface::joint_arm::ConstPtr &msg);
+
 
 };  // class
 

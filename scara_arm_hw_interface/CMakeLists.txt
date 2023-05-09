@@ -15,14 +15,13 @@ find_package(catkin REQUIRED COMPONENTS
     ros_control_boilerplate
     )
 
-# add_message_files(FILES
-#     armCmd.msg
-#     armTelemetry.msg
-# )
+add_message_files(FILES
+    joint_arm.msg
+)
 
-# generate_messages(DEPENDENCIES 
-#     std_msgs
-# )
+generate_messages(DEPENDENCIES 
+    std_msgs
+)
 
 catkin_package(
     CATKIN_DEPENDS 
