@@ -1,0 +1,213 @@
+<?xml version="1.0" ?>
+<robot name="scara_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find scara_arm_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find scara_arm_description)/urdf/scara_arm.trans" />
+<xacro:include filename="$(find scara_arm_description)/urdf/scara_arm.gazebo" />
+<link name="world" />
+    <joint name="world_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0.25" />
+        <parent link="world" />
+        <child link="base_link" />
+    </joint>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.11835854812758473 -0.000276888564792295 0.07546314461319549" rpy="0 0 0"/>
+    <mass value="9.76941358714018"/>
+    <inertia ixx="0.040462" iyy="0.058748" izz="0.065063" ixy="0.000229" iyz="3e-06" ixz="0.003341"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="link_01_1">
+  <inertial>
+    <origin xyz="0.08670878750712241 1.200325802990558e-08 0.006656155794027313" rpy="0 0 0"/>
+    <mass value="1.9187641006386469"/>
+    <inertia ixx="0.001419" iyy="0.016505" izz="0.017605" ixy="0.0" iyz="0.0" ixz="-0.000439"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.089 -0.0 -0.134" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/link_01_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.089 -0.0 -0.134" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/link_01_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="link_02_1">
+  <inertial>
+    <origin xyz="0.08442650829809627 -0.00019960790751640374 0.04670690112194936" rpy="0 0 0"/>
+    <mass value="4.429642089527778"/>
+    <inertia ixx="0.010022" iyy="0.037429" izz="0.034386" ixy="0.000108" iyz="-1.5e-05" ixz="0.003844"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.109 -0.0 -0.150161" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/link_02_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.109 -0.0 -0.150161" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/link_02_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="link_03_1">
+  <inertial>
+    <origin xyz="7.948171955463046e-05 0.015947235193624242 0.007476972757145983" rpy="0 0 0"/>
+    <mass value="1.573240852398478"/>
+    <inertia ixx="0.031125" iyy="0.031053" izz="0.000561" ixy="-1e-06" iyz="0.000143" ixz="0.000175"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.321 0.014923 -0.190844" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/link_03_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.321 0.014923 -0.190844" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/link_03_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="link_04_1">
+  <inertial>
+    <origin xyz="-6.87288058324742e-05 -3.7241785767553145e-11 -0.004999674402307544" rpy="0 0 0"/>
+    <mass value="0.1300483969226679"/>
+    <inertia ixx="1.8e-05" iyy="1.8e-05" izz="3.4e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.3217 0.0 -0.087161" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/link_04_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.3217 0.0 -0.087161" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/link_04_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="link_01_joint" type="revolute">
+  <origin xyz="-0.089 0.0 0.134" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link_01_1"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+  <limit upper="1.71042" lower="-1.43117" effort="100" velocity="100"/>
+</joint>
+
+<joint name="link_02_joint" type="revolute">
+  <origin xyz="0.198 0.0 0.016161" rpy="0 0 0"/>
+  <parent link="link_01_1"/>
+  <child link="link_02_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <limit upper="1.43117" lower="-1.71042" effort="100" velocity="100"/>
+</joint>
+
+<joint name="link_03_joint" type="prismatic">
+  <origin xyz="0.212 -0.014923 0.040683" rpy="0 0 0"/>
+  <parent link="link_02_1"/>
+  <child link="link_03_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <limit upper="0.0" lower="-0.23" effort="100" velocity="100"/>
+</joint>
+
+<joint name="link_04_joint" type="revolute">
+  <origin xyz="0.0007 0.014923 -0.103683" rpy="0 0 0"/>
+  <parent link="link_03_1"/>
+  <child link="link_04_1"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+</joint>
+
+
+<!-- Suction Gripper -->
+<joint name="gripper_attach" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <parent link="link_04_1"/>
+  <child link="gripper_base_link"/>
+</joint>
+<!-- 
+<xacro:include filename="$(find scara_arm_description)/urdf/suction_gripper/materials.xacro" />
+<xacro:include filename="$(find scara_arm_description)/urdf/suction_gripper/vacuum_gripper.trans" />
+<xacro:include filename="$(find scara_arm_description)/urdf/suction_gripper/vacuum_gripper.gazebo" /> -->
+<link name="gripper_base_link">
+  <inertial>
+    <origin xyz="0.012152318878142441 0.00989984571459361 -0.05720243618145755" rpy="0 0 0"/>
+    <mass value="0.8034775156193473"/>
+    <inertia ixx="0.000793" iyy="0.000806" izz="0.000631" ixy="9.2e-05" iyz="9e-05" ixz="-6.1e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/suction_gripper/gripper_base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/suction_gripper/gripper_base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="gripper_link_1">
+  <inertial>
+    <origin xyz="2.943394468511826e-07 2.2149824879902726e-07 -0.0024999999999999675" rpy="0 0 0"/>
+    <mass value="0.002457048975733048"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.000371 -2.9e-05 0.0505" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/suction_gripper/gripper_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.000371 -2.9e-05 0.0505" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://scara_arm_description/meshes/suction_gripper/gripper_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="gripper_joint" type="prismatic">
+  <origin xyz="0.000371 2.9e-05 -0.0505" rpy="0 0 0"/>
+  <parent link="gripper_base_link"/>
+  <child link="gripper_link_1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+  <limit upper="0.02" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+
+</robot>
