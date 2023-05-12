@@ -1,5 +1,5 @@
 controller_list:
-  - name: scara_arm_position_controller
+  - name: scara_arm_pose
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
     default: True
@@ -7,7 +7,8 @@ controller_list:
       - link_01_joint
       - link_02_joint
       - link_04_joint
-  - name: scara_arm_effort_controller
+      - gripper_joint
+  - name: scara_arm_eff
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
     default: True

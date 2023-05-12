@@ -30,7 +30,7 @@ void scara_armHWInterface::armTelemetryCallback(const scara_arm_hw_interface::jo
       joint_position_[joint_num] = msg->joint_4 * DEG_TO_RAD;
       break;
     case 4:
-      joint_position_[joint_num] = msg->gripper * DEG_TO_RAD;
+      joint_position_[joint_num] = msg->gripper;
       break;
     
     default:
@@ -85,7 +85,7 @@ void scara_armHWInterface::write(ros::Duration& elapsed_time)
       cmd_msg.joint_4 = joint_position_command_[i] * RAD_TO_DEG;
       break;
     case 4:
-      cmd_msg.gripper = joint_position_command_[i] * RAD_TO_DEG;
+      cmd_msg.gripper = joint_position_command_[i] ;
       break;
     
     default:

@@ -1,9 +1,10 @@
-scara_arm_position_controller:
+scara_arm_pose:
   type: position_controllers/JointTrajectoryController
   joints:
     - link_01_joint
     - link_02_joint
     - link_04_joint
+    - gripper_joint
   gains:
     link_01_joint:
       p: 100
@@ -20,7 +21,12 @@ scara_arm_position_controller:
       d: 1
       i: 1
       i_clamp: 1
-scara_arm_effort_controller:
+    gripper_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+scara_arm_eff:
   type: effort_controllers/JointTrajectoryController
   joints:
     - link_03_joint
@@ -29,4 +35,4 @@ scara_arm_effort_controller:
       p: 100
       d: 1
       i: 1
-      i_clamp: 255
+      i_clamp: 1

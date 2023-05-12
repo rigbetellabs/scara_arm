@@ -2,7 +2,7 @@
 # Settings for ros_control control loop
 
 generic_hw_control_loop:
-  loop_hz: 150 # 250 to emulate serial pause COMMAND_PERIOD 0.0055 , SERIAL_PAUSE 0.004
+  loop_hz: 50 # 250 to emulate serial pause COMMAND_PERIOD 0.0055 , SERIAL_PAUSE 0.004
   cycle_time_error_threshold: 0.1
 
 # Settings for ros_control hardware interface (used in generic_hw_interface.cpp)
@@ -12,6 +12,7 @@ hardware_interface:
     - link_02_joint
     - link_03_joint
     - link_04_joint
+    - gripper_joint
 
 
 # Publish all joint states ----------------------------------
@@ -28,6 +29,11 @@ scara_arm_pos_JT_controller:
     - link_01_joint
     - link_02_joint
     - link_04_joint
+
+scara_arm_gripper_pos_JT_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - gripper_joint
 
 scara_arm_eff_JT_controller:
   type: effort_controllers/JointTrajectoryController
@@ -46,6 +52,10 @@ scara_arm_pos_JGP_controller:
     - link_01_joint
     - link_02_joint
     - link_04_joint
+
+scara_arm_gripper_pos_JP_controller:
+  type: position_controllers/JointPositionController
+  joint: gripper_joint
 
 scara_arm_eff_JP_controller:
   type: effort_controllers/JointPositionController

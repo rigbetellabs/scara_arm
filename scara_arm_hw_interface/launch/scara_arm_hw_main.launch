@@ -1,15 +1,4 @@
 <launch>
- 
-    <!-- RVIZ  -->
-      
-       <!-- Load the URDF to the parameter server -->
-       <!-- <param name="robot_description" textfile="$(find eric_arm_description)/urdf/scara_arm.urdf"/> -->
-   
-   
-       <!-- Show in Rviz  -->
-       <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find scara_arm_hw_control)/basic.rviz"/> -->
-   
-   
    
     <!-- CORE  -->
    
@@ -23,10 +12,10 @@
    
        <!-- Load controller manager  -->
        <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false"
-       output="screen" args="spawn joint_state_controller scara_arm_eff_JT_controller scara_arm_pos_JT_controller" />
+       output="screen" args="spawn joint_state_controller scara_arm_eff_JT_controller scara_arm_pos_JT_controller scara_arm_gripper_pos_JT_controller" />
 
        <node name="ros_control_controller_manager_load" pkg="controller_manager" type="controller_manager" respawn="false"
-       output="screen" args="load scara_arm_eff_JP_controller scara_arm_pos_JGP_controller" />
+       output="screen" args="load scara_arm_eff_JP_controller scara_arm_pos_JGP_controller scara_arm_gripper_pos_JP_controller" />
    
        <!-- Convert joint states to /tf tranforms -->
        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
