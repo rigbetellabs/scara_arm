@@ -22,14 +22,14 @@ joint_state_controller:
 
 # Joint Trajectory Controller -------------------------------
 # For detailed explanations of parameter see http://wiki.ros.org/joint_trajectory_controller
-scara_arm_position_controller:
+scara_arm_pos_JT_controller:
   type: position_controllers/JointTrajectoryController
   joints:
     - link_01_joint
     - link_02_joint
     - link_04_joint
 
-scara_arm_effort_controller:
+scara_arm_eff_JT_controller:
   type: effort_controllers/JointTrajectoryController
   joints:
     - link_03_joint
@@ -39,3 +39,15 @@ scara_arm_effort_controller:
       d: 2
       i: 20
       i_clamp: 255
+
+scara_arm_pos_JGP_controller:
+  type: position_controllers/JointGroupPositionController
+  joints:
+    - link_01_joint
+    - link_02_joint
+    - link_04_joint
+
+scara_arm_eff_JP_controller:
+  type: effort_controllers/JointPositionController
+  joint: link_03_joint
+  pid: {p: 600, i: 20, d: 2, i_clamp: 100}

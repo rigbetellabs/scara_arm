@@ -1,3 +1,10 @@
+/*
+ * yellow signal
+ * green vcc center 
+ * orange ground 
+ */
+
+
 #include <Servo.h>
 #include <ros.h>
 #include "scara_arm_hw_interface/joint_arm.h"
@@ -29,7 +36,7 @@ void armCmd_cb( const scara_arm_hw_interface::joint_arm& cmd_msg) {
         break;
       case 2:
         int sensorValue = analogRead(A0);
-        armTelemetry_msg.z_axis = (float)((sensorValue - 630.0) * (-0.23 - 0.0) / (870.0 - 630.0) + 0.0);
+        armTelemetry_msg.z_axis = (float)((sensorValue - 570.0) * (-0.24 - 0.0) / (785.0 - 570.0) + 0.0);
         servo_val[joint_num] = (int)map(cmd_msg.z_axis, -100, 100, 180, 0);
         servo[joint_num].write(servo_val[joint_num]);
         break;
@@ -40,8 +47,8 @@ void armCmd_cb( const scara_arm_hw_interface::joint_arm& cmd_msg) {
         break;
       case 4:
         armTelemetry_msg.gripper = (float)cmd_msg.gripper;
-        // servo_val[joint_num] = (int)map(cmd_msg.joint_4, -90, 90, 0, 180);
-        // servo[joint_num].write(servo_val[joint_num]);
+        servo_val[joint_num] = (cmd_msg.gripper > 0.1)? 180 : 0;
+        servo[joint_num].write(servo_val[joint_num]);
         break;
       default:
         break;
@@ -49,7 +56,7 @@ void armCmd_cb( const scara_arm_hw_interface::joint_arm& cmd_msg) {
   }
 
   armTelemetry.publish(&armTelemetry_msg);
-  nh.loginfo("Telemetry");
+//  nh.loginfo("Telemetry");
 }
 
 ros::Subscriber<scara_arm_hw_interface::joint_arm> armCmd("/arduino/armCmd", armCmd_cb);

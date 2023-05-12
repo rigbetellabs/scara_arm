@@ -23,7 +23,10 @@
    
        <!-- Load controller manager  -->
        <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false"
-       output="screen" args="spawn joint_state_controller scara_arm_effort_controller scara_arm_position_controller" />
+       output="screen" args="spawn joint_state_controller scara_arm_eff_JT_controller scara_arm_pos_JT_controller" />
+
+       <node name="ros_control_controller_manager_load" pkg="controller_manager" type="controller_manager" respawn="false"
+       output="screen" args="load scara_arm_eff_JP_controller scara_arm_pos_JGP_controller" />
    
        <!-- Convert joint states to /tf tranforms -->
        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
@@ -36,38 +39,12 @@
        <include file="$(find scara_arm_config)/launch/planning_context.launch">
        <arg name="load_robot_description" value="true"/>
        </include>
-   
-   
-       <!-- Remap follow_joint_trajectory -->
-       <!-- <remap from="/joint_trajectory_action" to="/arm_controller/follow_joint_trajectory"/> -->
-     
-   
-       <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
-       <!-- <include file="$(find eric_arm_config)/launch/move_group.launch">
-       <arg name="allow_trajectory_execution" value="true"/>
-       <arg name="fake_execution" value="false"/>
-       <arg name="info" value="true"/> 
-       </include> -->
-   
-   
-   
+
     
    <!-- HARDWARE -->
-   
-       <!-- required watchdog signal 
-       <node name="watchdog_signal" pkg="aubo_control" type="watchdog_signal" output="screen"/> -->
-   
-       <!-- rosserial to teensy 
-       <node pkg="rosserial_server" type="serial_node" name="rosserial_server_main" output="screen" respawn="true"> 
-           <rosparam>
-               port: /dev/teensy_main
-               baud: 115200
-               spin_rate: 0.5
-   
-           </rosparam>
-       </node> -->
-   
-   
-    
-   
+        <!-- rosserial to Arduino  -->
+        <node pkg="rosserial_python" type="serial_node.py" name="rosserial_node" output="screen" respawn="true"> 
+            <param name="port" value="/dev/ttyACM0"/>
+            <param name="baud" value="57600"/>
+       </node>
    </launch>
