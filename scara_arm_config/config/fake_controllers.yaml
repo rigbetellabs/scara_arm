@@ -6,12 +6,6 @@ controller_list:
       - link_02_joint
       - link_03_joint
       - link_04_joint
-  - name: fake_scara_arm_gripper_controller
-    type: $(arg fake_execution_type)
-    joints:
-      - gripper_joint
 initial:  # Define initial robot poses per group
   - group: scara_arm
     pose: extended
-  - group: scara_arm_gripper
-    pose: open

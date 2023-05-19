@@ -1,11 +1,11 @@
 moveit_setup_assistant_config:
   URDF:
     package: scara_arm_description
-    relative_path: urdf/scara_arm_suction_gripper.xacro
+    relative_path: urdf/scara_arm.xacro
     xacro_args: ""
   SRDF:
     relative_path: config/scara_arm.srdf
   CONFIG:
     author_name: Aaryan Murgunde
     author_email: aaryanmurgunde@rigbetellabs.com
-    generated_timestamp: 1683905638
+    generated_timestamp: 1684486747
