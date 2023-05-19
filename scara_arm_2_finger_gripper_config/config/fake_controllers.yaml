@@ -1,0 +1,17 @@
+controller_list:
+  - name: fake_scara_arm_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - link_01_joint
+      - link_02_joint
+      - link_03_joint
+      - link_04_joint
+  - name: fake_two_finger_gripper_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - gripper_joint
+initial:  # Define initial robot poses per group
+  - group: scara_arm
+    pose: extended
+  - group: two_finger_gripper
+    pose: closed
