@@ -1,5 +1,5 @@
 <launch>
-  <arg name="model" default="$(find scara_arm_description)/urdf/scara_arm_suction_gripper.xacro"/>
+  <arg name="model" default="$(find scara_arm_description)/urdf/scara_arm_vacuum_gripper.xacro"/>
   <arg name="gui" default="true"/>
   <arg name="rvizconfig" default="$(find scara_arm_description)/launch/urdf.rviz"/>
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
