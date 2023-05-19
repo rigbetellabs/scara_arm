@@ -93,7 +93,7 @@
   <parent link="gripper_base_link"/>
   <child link="pinion_1"/>
   <axis xyz="1.0 -0.0 -0.0"/>
-  <limit upper="3.141593" lower="0.0" effort="100" velocity="100"/>
+  <limit upper="2.96706" lower="0.0" effort="100" velocity="100"/>
 </joint>
 
 <joint name="right_gripper_joint" type="prismatic">
@@ -101,7 +101,7 @@
   <parent link="gripper_base_link"/>
   <child link="gripper_right_1"/>
   <axis xyz="0.0 1.0 0.0"/>
-  <mimic joint="gripper_joint" multiplier="0.0111464968"/>
+  <mimic joint="gripper_joint" multiplier="-0.011796189" offset="0.035"/>
   <limit upper="0.035" lower="0.001" effort="100" velocity="100"/>
 </joint>
 
@@ -110,7 +110,7 @@
   <parent link="gripper_base_link"/>
   <child link="gripper_left_1"/>
   <axis xyz="0.0 1.0 0.0"/>
-  <mimic joint="gripper_joint" multiplier="-0.0111464968"/>
+  <mimic joint="gripper_joint" multiplier="0.011796189" offset="-0.035"/>
   <limit upper="-0.001" lower="-0.035" effort="100" velocity="100"/>
 </joint>
 

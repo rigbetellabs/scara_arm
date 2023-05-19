@@ -41,7 +41,7 @@ void armCmd_cb(const scara_arm_hw_interface::joint_arm& cmd_msg) {
         break;
       case 4:
         armTelemetry_msg.gripper = (float)cmd_msg.gripper;
-        servo_val[joint_num] = (int)((cmd_msg.gripper - 0.0) * (180 - 0) / (0.02 - 0.0) + 0);
+        servo_val[joint_num] = (int)(cmd_msg.gripper);
         servo[joint_num].write(servo_val[joint_num]);
         break;
       case 2:

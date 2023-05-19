@@ -1,0 +1,8 @@
+scara_arm_grippers:
+  default:
+    multiplier: 0.0
+  vacuum:
+    multiplier: 9000.0
+  two_finger:
+    multiplier: 57.2957795131
+  
