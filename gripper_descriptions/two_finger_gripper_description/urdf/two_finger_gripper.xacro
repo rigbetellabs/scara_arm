@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<robot name="two_finger_gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- <xacro:include filename="$(find two_finger_gripper_description)/urdf/materials.xacro" /> -->
+<xacro:include filename="$(find two_finger_gripper_description)/urdf/two_finger_gripper.trans" />
+<xacro:include filename="$(find two_finger_gripper_description)/urdf/two_finger_gripper.gazebo" />
+<link name="gripper_base_link">
+  <inertial>
+    <origin xyz="0.023843975149766813 -0.007551602066560885 -1.7803166319307262e-07" rpy="0 0 0"/>
+    <mass value="0.7371676511848216"/>
+    <inertia ixx="0.000313" iyy="0.000272" izz="0.000299" ixy="-1.3e-05" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://two_finger_gripper_description/meshes/gripper_base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://two_finger_gripper_description/meshes/gripper_base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="pinion_1">
+  <inertial>
+    <origin xyz="0.0034043394457755963 1.3778876043618604e-12 -1.2631614722542942e-12" rpy="0 0 0"/>
+    <mass value="0.020624177027043226"/>
+    <inertia ixx="2e-06" iyy="1e-06" izz="1e-06" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0485 -0.001 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://two_finger_gripper_description/meshes/pinion_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0485 -0.001 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://two_finger_gripper_description/meshes/pinion_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="gripper_right_1">
+  <inertial>
+    <origin xyz="0.010859809536370418 -0.0037061649756109875 -0.016631094134670964" rpy="0 0 0"/>
+    <mass value="0.19983948074258262"/>
+    <inertia ixx="6.3e-05" iyy="5.4e-05" izz="6.8e-05" ixy="6e-06" iyz="8e-06" ixz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0567 -0.014 -0.0182" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://two_finger_gripper_description/meshes/gripper_right_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0567 -0.014 -0.0182" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://two_finger_gripper_description/meshes/gripper_right_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="gripper_left_1">
+  <inertial>
+    <origin xyz="0.010257810630306105 0.003203941855784714 0.016553712338734785" rpy="0 0 0"/>
+    <mass value="0.18914730605530125"/>
+    <inertia ixx="6.1e-05" iyy="5.1e-05" izz="6.6e-05" ixy="-4e-06" iyz="8e-06" ixz="-6e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0567 0.012 0.0182" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://two_finger_gripper_description/meshes/gripper_left_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0567 0.012 0.0182" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://two_finger_gripper_description/meshes/gripper_left_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="gripper_joint" type="revolute">
+  <origin xyz="0.0485 0.001 0.0" rpy="0 0 0"/>
+  <parent link="gripper_base_link"/>
+  <child link="pinion_1"/>
+  <axis xyz="1.0 -0.0 -0.0"/>
+  <limit upper="3.141593" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_gripper_joint" type="prismatic">
+  <origin xyz="0.0567 0.014 0.0182" rpy="0 0 0"/>
+  <parent link="gripper_base_link"/>
+  <child link="gripper_right_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <mimic joint="gripper_joint" multiplier="0.0111464968"/>
+  <limit upper="0.035" lower="0.001" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_gripper_joint" type="prismatic">
+  <origin xyz="0.0567 -0.012 -0.0182" rpy="0 0 0"/>
+  <parent link="gripper_base_link"/>
+  <child link="gripper_left_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <mimic joint="gripper_joint" multiplier="-0.0111464968"/>
+  <limit upper="-0.001" lower="-0.035" effort="100" velocity="100"/>
+</joint>
+
+</robot>

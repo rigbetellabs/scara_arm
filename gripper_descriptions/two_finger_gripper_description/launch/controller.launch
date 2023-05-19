@@ -1,0 +1,9 @@
+<launch>
+
+<rosparam file="$(find two_finger_gripper_description)/launch/controller.yaml" command="load"/>
+<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="two_finger_gripper" args="gripper_joint_position_controller right_gripper_joint_position_controller left_gripper_joint_position_controller joint_state_controller "/>
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+  <remap from="/joint_states" to="/two_finger_gripper/joint_states"/>
+</node>
+
+</launch>
