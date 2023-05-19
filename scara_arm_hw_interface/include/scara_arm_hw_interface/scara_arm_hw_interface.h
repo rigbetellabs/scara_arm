@@ -38,6 +38,9 @@ ros::Publisher command_pub;
 ros::Subscriber telemetry_sub;
 void armTelemetryCallback(const scara_arm_hw_interface::joint_arm::ConstPtr &msg);
 
+std::string ATTACHED_GRIPPER_NAME;
+float END_EFF_MULTIPLIER;
+
 
 };  // class
 

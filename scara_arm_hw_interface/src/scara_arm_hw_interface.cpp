@@ -10,6 +10,19 @@ scara_armHWInterface::scara_armHWInterface(ros::NodeHandle& nh, urdf::Model* urd
   command_pub = nh.advertise<scara_arm_hw_interface::joint_arm>("/arduino/armCmd",1);
   ROS_INFO("scara_armHWInterface constructed!");
 
+  if(nh.getParam("/scara_arm/attached_gripper", ATTACHED_GRIPPER_NAME)){
+    ROS_INFO_STREAM("HW INTERFACE: " << "THE GRIPPER NAME SET AS: " << ATTACHED_GRIPPER_NAME);
+  } else {
+    ROS_ERROR_STREAM("HW INTERFACE: " << "FAILED TO GET THE GRIPPER NAME");
+  }
+  std::string GRIPPER_PARAM = "/scara_arm_grippers/" + ATTACHED_GRIPPER_NAME + "/multiplier";
+
+  if(nh.getParam(GRIPPER_PARAM, END_EFF_MULTIPLIER)){
+    ROS_INFO_STREAM("HW INTERFACE: " << "THE GRIPPER MULTIPLIER SET AS: " << END_EFF_MULTIPLIER);
+  } else {
+    ROS_ERROR_STREAM("HW INTERFACE: " << "FAILED TO GET THE GRIPPER MULTIPLIER");
+  }
+
 }
 
 void scara_armHWInterface::armTelemetryCallback(const scara_arm_hw_interface::joint_arm::ConstPtr &msg){
@@ -30,7 +43,7 @@ void scara_armHWInterface::armTelemetryCallback(const scara_arm_hw_interface::jo
       joint_position_[joint_num] = msg->joint_4 * DEG_TO_RAD;
       break;
     case 4:
-      joint_position_[joint_num] = msg->gripper;
+      joint_position_[joint_num] = msg->gripper * (1 / END_EFF_MULTIPLIER);
       break;
     
     default:
@@ -85,7 +98,7 @@ void scara_armHWInterface::write(ros::Duration& elapsed_time)
       cmd_msg.joint_4 = joint_position_command_[i] * RAD_TO_DEG;
       break;
     case 4:
-      cmd_msg.gripper = joint_position_command_[i] ;
+      cmd_msg.gripper = joint_position_command_[i] * END_EFF_MULTIPLIER;
       break;
     
     default:
