@@ -1,12 +1,12 @@
 <launch>
 
     <!-- CORE  -->
-    <arg name="gripper" default="default" />
+    <arg name="gripper_type" default="default" />
    
      <!-- Load controller settings  -->
        <rosparam file="$(find scara_arm_hw_interface)/config/scara_arm_controllers.yaml" command="load"/>
        <rosparam file="$(find scara_arm_hw_interface)/config/scara_arm_grippers.yaml" command="load"/>
-       <rosparam param="/scara_arm/attached_gripper" subst_value="True">$(arg gripper)</rosparam>
+       <rosparam param="/scara_arm/attached_gripper" subst_value="True">$(arg gripper_type)</rosparam>
    
        <!-- Load hardware interface -->
        <node name="scara_arm_hw_main" pkg="scara_arm_hw_interface" type="scara_arm_hw_main" output="screen"/> 

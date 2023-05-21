@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+<!-- 
+Specify interface type : 
+    1. rviz 
+    2. gazebo 
+    3. robot 
+-->
+<arg name="interface" default="rviz" />
+
+<!-- 
+Specify the gripper type
+    1. No gripper : default
+    2. Suction gripper: vacuum
+    3. Two Finger Gripper: two_finger
+-->
+<arg name="gripper_type" default="default" />
+
+<group  unless="$(eval arg('interface') == 'gazebo')">
+    <group if="$(eval arg('gripper_type') == 'default')">
+        <include file="$(find scara_arm_config)/launch/demo.launch" >
+            <arg name="moveit_controller_manager" default="ros_control" if="$(eval arg('interface') == 'hardware')"/>
+        </include>
+        <include file="$(find scara_arm_hw_interface)/launch/scara_arm_hw_main.launch" if="$(eval arg('interface') == 'hardware')">
+            <arg name="gripper_type" value="$(arg gripper_type)"/>
+        </include>
+    </group>
+
+    <group if="$(eval arg('gripper_type') == 'vacuum')">
+        <include file="$(find scara_arm_vacuum_gripper_config)/launch/demo.launch">
+            <arg name="moveit_controller_manager" default="ros_control" if="$(eval arg('interface') == 'hardware')"/>
+        </include>
+        <include file="$(find scara_arm_hw_interface)/launch/scara_arm_hw_main.launch" if="$(eval arg('interface') == 'hardware')">
+            <arg name="gripper_type" value="$(arg gripper_type)"/>
+        </include>
+    </group>
+
+    <group if="$(eval arg('gripper_type') == 'two_finger')">
+        <include file="$(find scara_arm_two_finger_gripper_config)/launch/demo.launch">
+            <arg name="moveit_controller_manager" default="ros_control" if="$(eval arg('interface') == 'hardware')"/>
+        </include>
+        <include file="$(find scara_arm_hw_interface)/launch/scara_arm_hw_main.launch" if="$(eval arg('interface') == 'hardware')">
+            <arg name="gripper_type" value="$(arg gripper_type)"/>
+        </include>
+    </group>
+</group>
+
+<group if="$(eval arg('interface') == 'gazebo')">
+    <include file="$(find scara_arm_config)/launch/demo_gazebo.launch" if="$(eval arg('interface') == 'gazebo')" />
+</group>
+
+</launch>
