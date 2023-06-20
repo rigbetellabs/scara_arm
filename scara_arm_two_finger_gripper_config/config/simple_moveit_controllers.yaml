@@ -8,7 +8,7 @@ controller_list:
       - link_02_joint
       - link_03_joint
       - link_04_joint
-  - name: vacuum_gripper_controller
+  - name: two_finger_gripper_controller
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
     default: True
