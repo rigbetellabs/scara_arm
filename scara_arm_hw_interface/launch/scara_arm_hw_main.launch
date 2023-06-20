@@ -14,10 +14,10 @@
    
        <!-- Load controller manager  -->
        <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false"
-       output="screen" args="spawn joint_state_controller scara_arm_eff_JT_controller scara_arm_pos_JT_controller scara_arm_gripper_pos_JT_controller" />
+       output="screen" args="load joint_state_controller scara_arm_eff_JT_controller scara_arm_pos_JT_controller scara_arm_gripper_pos_JT_controller" />
 
        <node name="ros_control_controller_manager_load" pkg="controller_manager" type="controller_manager" respawn="false"
-       output="screen" args="load scara_arm_eff_JP_controller scara_arm_pos_JGP_controller scara_arm_gripper_pos_JP_controller" />
+       output="screen" args="spawn joint_state_controller scara_arm_J1_JP_controller scara_arm_J2_JP_controller scara_arm_J4_JP_controller scara_arm_Z_JE_controller scara_arm_EEF_JP_controller" />
    
        <!-- Convert joint states to /tf tranforms -->
        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
@@ -27,10 +27,15 @@
     <!-- MOVEIT -->
    
        <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
-       <include file="$(find scara_arm_vacuum_gripper_config)/launch/planning_context.launch">
+       <include file="$(find scara_arm_config)/launch/planning_context.launch" if="$(eval arg('gripper_type') == 'default')">
        <arg name="load_robot_description" value="true"/>
        </include>
-
+       <include file="$(find scara_arm_vacuum_gripper_config)/launch/planning_context.launch" if="$(eval arg('gripper_type') == 'vacuum')">
+       <arg name="load_robot_description" value="true"/>
+       </include>
+       <include file="$(find scara_arm_two_finger_gripper_config)/launch/planning_context.launch" if="$(eval arg('gripper_type') == 'two_finger')">
+       <arg name="load_robot_description" value="true"/>
+       </include>
     
    <!-- HARDWARE -->
         <!-- rosserial to Arduino  -->

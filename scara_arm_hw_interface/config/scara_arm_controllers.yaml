@@ -46,18 +46,25 @@ scara_arm_gripper_pos_JT_controller:
   joints:
     - gripper_joint
 
-scara_arm_pos_JGP_controller:
-  type: position_controllers/JointGroupPositionController
-  joints:
-    - link_01_joint
-    - link_02_joint
-    - link_04_joint
+# Joint Position/Velocity Controller -------------------------------
+# For Manual Control
+scara_arm_J1_JP_controller:
+  type: position_controllers/JointPositionController
+  joint: link_01_joint
 
-scara_arm_eff_JP_controller:
-  type: effort_controllers/JointPositionController
+scara_arm_J2_JP_controller:
+  type: position_controllers/JointPositionController
+  joint: link_02_joint
+
+scara_arm_J4_JP_controller:
+  type: position_controllers/JointPositionController
+  joint: link_04_joint
+
+scara_arm_Z_JE_controller:
+  type: effort_controllers/JointEffortController
   joint: link_03_joint
   pid: {p: 600, i: 20, d: 2, i_clamp: 100}
 
-scara_arm_gripper_pos_JP_controller:
+scara_arm_EEF_JP_controller:
   type: position_controllers/JointPositionController
   joint: gripper_joint
