@@ -16,10 +16,24 @@ Specify the gripper type
 -->
 <arg name="gripper_type" default="default" />
 
+<!-- 
+Specify the planning pipeline
+    1. ompl
+    2. chomp
+    3. stomp
+    4. ompl-chomp
+    5. ompl-stomp
+    6. chomp-stomp
+    7. stomp-stomp
+
+-->
+<arg name="pipeline" default="ompl" />
+
 <group  unless="$(eval arg('interface') == 'gazebo')">
     <group if="$(eval arg('gripper_type') == 'default')">
         <include file="$(find scara_arm_config)/launch/demo.launch" >
             <arg name="moveit_controller_manager" default="ros_control" if="$(eval arg('interface') == 'hardware')"/>
+            <arg name="pipeline" value="$(arg pipeline)"/>
         </include>
         <include file="$(find scara_arm_hw_interface)/launch/scara_arm_hw_main.launch" if="$(eval arg('interface') == 'hardware')">
             <arg name="gripper_type" value="$(arg gripper_type)"/>
@@ -29,6 +43,7 @@ Specify the gripper type
     <group if="$(eval arg('gripper_type') == 'vacuum')">
         <include file="$(find scara_arm_vacuum_gripper_config)/launch/demo.launch">
             <arg name="moveit_controller_manager" default="ros_control" if="$(eval arg('interface') == 'hardware')"/>
+            <arg name="pipeline" value="$(arg pipeline)"/>
         </include>
         <include file="$(find scara_arm_hw_interface)/launch/scara_arm_hw_main.launch" if="$(eval arg('interface') == 'hardware')">
             <arg name="gripper_type" value="$(arg gripper_type)"/>
@@ -38,6 +53,7 @@ Specify the gripper type
     <group if="$(eval arg('gripper_type') == 'two_finger')">
         <include file="$(find scara_arm_two_finger_gripper_config)/launch/demo.launch">
             <arg name="moveit_controller_manager" default="ros_control" if="$(eval arg('interface') == 'hardware')"/>
+            <arg name="pipeline" value="$(arg pipeline)"/>
         </include>
         <include file="$(find scara_arm_hw_interface)/launch/scara_arm_hw_main.launch" if="$(eval arg('interface') == 'hardware')">
             <arg name="gripper_type" value="$(arg gripper_type)"/>
@@ -47,6 +63,7 @@ Specify the gripper type
 
 <group if="$(eval arg('interface') == 'gazebo')">
     <include file="$(find scara_arm_config)/launch/demo_gazebo.launch" if="$(eval arg('interface') == 'gazebo')" />
+    <arg name="pipeline" value="$(arg pipeline)"/>
 </group>
 
 </launch>
