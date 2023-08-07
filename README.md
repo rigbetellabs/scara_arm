@@ -31,7 +31,7 @@ cd ~/catkin_ws
 
 Run rosdep to update the binaries and install missing:
 ```bash
-source /opt/ros/opt
+source /opt/ros/noetic/setup.bash
 sudo rosdep init
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
