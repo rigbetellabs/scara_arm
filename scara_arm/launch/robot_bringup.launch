@@ -21,10 +21,10 @@ Specify the planning pipeline
     1. ompl
     2. chomp
     3. stomp
-    4. ompl-chomp
-    5. ompl-stomp
-    6. chomp-stomp
-    7. stomp-stomp
+    4. ompl_chomp
+    5. ompl_stomp
+    6. chomp_stomp
+    7. stomp_stomp
 
 -->
 <arg name="pipeline" default="ompl" />
