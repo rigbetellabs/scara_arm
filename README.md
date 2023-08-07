@@ -58,7 +58,7 @@ roslaunch scara_arm robot_bringup.launch
 roslaunch scara_arm robot_bringup.launch interface:=hardware
 ```
 
-2. `gripper` types: Attach Grippers
+2. `gripper_type` types: Attach Grippers
     - `default` : Only the base arm no gripper *(default)*
     - `vacuum` : Attach Vacuum Suction Gripper
     - `two_finger` : Attach Two Finger Gripper
@@ -70,10 +70,10 @@ roslaunch scara_arm robot_bringup.launch interface:=hardware gripper:=vacuum
     - `ompl` : Open Motion Planning Library *(default)*
     - `chomp` : Covariant Hamiltonian Optimization for Motion Planning 
     - `stomp` : Stochastic Trajectory Optimization for Motion Planning
-    - `ompl-stomp` : OMPL as a pre-processor for STOMP
-    - `ompl-chomp` : OMPL as a pre-processor for CHOMP
-    - `chomp-stomp` : STOMP as a post-processor for CHOMP
-    - `stomp-chomp` : CHOMP as a post-processor for STOMP
+    - `ompl_stomp` : OMPL as a pre-processor for STOMP
+    - `ompl_chomp` : OMPL as a pre-processor for CHOMP
+    - `chomp_stomp` : STOMP as a post-processor for CHOMP
+    - `stomp_chomp` : CHOMP as a post-processor for STOMP
 ```bash
 roslaunch scara_arm robot_bringup.launch interface:=hardware gripper:=vacuum pipeline:=chomp
 ```
