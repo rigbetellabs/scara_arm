@@ -63,7 +63,7 @@ roslaunch scara_arm robot_bringup.launch interface:=hardware
     - `vacuum` : Attach Vacuum Suction Gripper
     - `two_finger` : Attach Two Finger Gripper
 ```bash
-roslaunch scara_arm robot_bringup.launch interface:=hardware gripper:=vacuum
+roslaunch scara_arm robot_bringup.launch interface:=hardware gripper_type:=vacuum
 ```
 
 3. `pipeline` types: Planning Pipelines for the arm
@@ -75,7 +75,7 @@ roslaunch scara_arm robot_bringup.launch interface:=hardware gripper:=vacuum
     - `chomp_stomp` : STOMP as a post-processor for CHOMP
     - `stomp_chomp` : CHOMP as a post-processor for STOMP
 ```bash
-roslaunch scara_arm robot_bringup.launch interface:=hardware gripper:=vacuum pipeline:=chomp
+roslaunch scara_arm robot_bringup.launch interface:=hardware gripper_type:=vacuum pipeline:=chomp
 ```
 
 # Theory on Planners
